@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scrolling text bottom to top using jquery</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.marquee.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Sansita" rel="stylesheet">
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+font-family: 'Sansita', sans-serif;
+font-weight:400;
+}
+
+.list-aggregate>li>a {
+    width: 85%;
+    height: 25px;
+    line-height: 25px;
+    display: block;
+    text-align: center;
+    margin: 7px auto;
+    font-size: 19px;
+    overflow: hidden;
+}
+
+a{text-decoration:none;}
+
+
+.list-aggregate>li {
+    padding: 10px 0;
+    border-bottom: solid 1px #fff;
+    -webkit-transition: ease-in-out background-color .15s .05s;
+    -o-transition: ease-in-out background-color .15s .05s;
+    transition: ease-in-out background-color .15s .05s;
+}
+ul, li {
+    list-style: none;
+}
+
+
+.list-aggregate li { border-bottom-color: #e5e5e5 }
+
+.list-aggregate li a { color: #fff; font-size:20px; font-family: 'Sansita', sans-serif; }
+
+.list-aggregate li a:hover { color: #fff }
+
+.list-aggregate li p { color: #fff;
+    padding: 0 10px;
+    font-size: 13px;
+    text-align: justify;
+    font-weight: 400;
+    height: 35px;
+    line-height: 18px;
+    overflow: hidden; }
+
+.list-aggregate li:hover { background-color: #fc6d58 }
+</style>
+</head>
+<body>  
+
+
+
+ <div class="block-hdnews" style="width:345px; margin:35px auto; background-color:#e95546;">
+
+          <div class="list-wrpaaer" style="height:380px">
+             <ul class="list-aggregate" id="marquee-vertical">
+               <li>
+                 <a href="">Breaking News 1</a>
+                 <p>
+                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.                
+                 </p>
+               </li>
+               
+               <li>
+                 <a href="">Breaking News 2</a>
+                 <p>Aliquam consequat nibh in sollicitudin semper. Nam convallis sapien nisi, ac vulputate nisi auctor blandit. Donec tincidunt varius suscipit. </p>
+               </li>
+               
+               <li>
+                 <a href="">Breaking News 3</a>
+                 <p>Ut ut felis suscipit sem porta molestie. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae/p>
+               </li>
+
+               <li>
+                <a href="" title="">Breaking News 4</a>
+                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In hac habitasse platea dictumst. </p>
+               </li>
+
+             </ul>
+          </div><!-- list-wrpaaer -->
+
+      </div> <!-- block-hdnews -->
+
+
+
+
+<script type="text/javascript">
+  
+  $(function(){
+
+
+  $('#marquee-vertical').marquee();  
+  $('#marquee-horizontal').marquee({direction:'horizontal', delay:0, timing:50});  
+
+});
+
+</script>
+</body>
+</html>
+</body>
+</html>

@@ -1,0 +1,49 @@
+html{
+	height: 100%;
+}
+#content{
+	text-align: center;
+	padding-top: 28%;
+	color: white;
+	text-shadow: 0px 4px 3px blue,
+				0px 8px 13px pink,
+				0px 18px 23px purple;
+}
+body{
+	background-image: url("pictures/welcome.jpg") ;
+	background-size: cover;
+	background-position: center;
+font-family: 'Lato', sans-serif;
+}
+h1{
+	font-weight: 700;
+	font-size: 4em;
+	text-align: center;
+	color: mintcream;
+}
+h2{		text-align: center;
+		padding-bottom: 40px;
+		color: rgb(135, 71, 217);
+font-size: 50px;
+text-shadow: rgb(22, 240, 215) 4px 4px 4px;
+}
+
+hr{
+	width: 400px;
+	border-top: 1px solid #f8f8f8;
+	border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+.navbar{
+	background: #2c3e50
+}
+.navbar-inverse .navbar-nav>li>a
+{
+	color: white;
+}
+.navbar-inverse .navbar-brand
+ {
+ 	color: white;
+ }
+form{
+	align:center;
+}
