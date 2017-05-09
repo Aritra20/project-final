@@ -1186,10 +1186,13 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: inherit;
-  font-weight: 500;
-  line-height: 1.1;
-  color: inherit;
+      font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
+    font-family: cursive;
+    font-stretch: normal;
+    font-weight: 700;
 }
 h1 small,
 h2 small,
@@ -3191,9 +3194,9 @@ fieldset[disabled] .btn-primary.focus {
   border-color: #255625;
 }
 .btn-success:hover {
-  color: #fff;
-  background-color: #449d44;
-  border-color: #398439;
+  color: #333;
+    background-color: rgba(112, 239, 112, 0.78);
+    border-color: #b8cc19;
 }
 .btn-success:active,
 .btn-success.active,

@@ -13,6 +13,7 @@ var multer = require ("multer");
 var flash = require("connect-flash");
 var mongo = require("mongodb");
 var mongoose = require("mongoose");
+const nodemailer = require('nodemailer');
 mongoose.connect("mongodb://localhost/campbuzz");
 var app = express();
 server = require("http").createServer(app);
@@ -53,6 +54,7 @@ if(!socket.username)return;
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var contact = require('./routes/contact');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -107,3 +109,4 @@ next();
 });
 app.use('/', routes);
 app.use('/users', users);
+app.use('/contact', contact);
