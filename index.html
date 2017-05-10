@@ -4,10 +4,16 @@
 	<title>Start Chatting</title>
 	<style>
 		body{
-			background: #70e1f5;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #ffd194, #70e1f5);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #ffd194, #70e1f5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+			background: #3a7bd5;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #3a6073, #3a7bd5);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #3a6073, #3a7bd5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
 margin: 0 auto;
+		}
+		#message{
+			width:77%;
+			overflow-wrap:break-word;
 		}
 		#chatWindow{
 			    height: 300px;
@@ -15,32 +21,48 @@ margin: 0 auto;
     font-size: larger;
     font-stretch: expanded;
     font-family: serif;
+    word-wrap: break-word;
+    min-width: 160px;
+    max-width: 340px;
+    white-space:normal;
+    overflow:auto;
+		}
+		.btn{
+			margin-top:15px;
 		}
 		#mainWrapper{
 			display: none;
 		}
 		#chatWrapper{
 			float: left;
-    border: 1px #f3eb08 solid;
+    border: 2px #f3eb08 solid;
     border-radius: 10px;
-    background: rgba(185, 255, 232, 0.79);
-    padding: 10px;
+    background-color:#EAEDED;
+    padding: 0px 10px 10px 10px;
+    word-wrap: break-word;
+    min-width: 160px;
+    max-width: 340px;
+    white-space:normal;
+    overflow:auto;
 		}
 		#userWrapper{
-			    float: left;
+			     float: left;
     border: 1px #e20f0f dashed;
     border-radius: 10px;
     background: rgba(224, 245, 57, 0.7);
     padding: 10px;
-    margin-left: 20px;
-    width: 85%;
+    margin: 20px;
+    width: 150px;
     max-height: 200px;
     font-size: x-large;
-    text-align: center;
+
 
 		}
+		#live{
+			color: white !important;
+		}
 		#namesWrapper{
-			        float: left;
+			         float: left;
     border: 1px #f7040f solid;
     border-radius: 20px;
     background: rgb(223, 243, 114);
@@ -57,8 +79,16 @@ margin: 0 auto;
     font-size: medium;
     font-weight: bold;
 		}
+		.sendbtn{
+			position:relative;
+			top:-12px;
+			float:right;
+		}
+		.exitbtn{
+			float:right;
+		}
 	</style>
-	<link href="//cdn.jsdelivr.net/emojione/1.3.0/assets/css/emojione.min.css" rel="stylesheet" type="text/css"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -68,7 +98,7 @@ margin: 0 auto;
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
-<body>
+<body onLoad="scrollDiv_init()">
 
 	<div class="container">
 	<div class="col-md-4 col-md-offset-4">
@@ -83,13 +113,13 @@ margin: 0 auto;
 			</form>
 		</div>
 		<div id="mainWrapper">
-			<h2>Live Chat</h2>
-			<div id="chatWrapper">
-				<div id="chatWindow"></div>
+			<h2 id="live">Live Chat</h2>
+			<div id="chatWrapper" onMouseOver="pauseDiv()" onMouseOut="resumeDiv()">
+				<div id="chatWindow"><button type="button" class="exitbtn btn btn-danger" onclick="window.location.href='home.html'">X</button>
+				</div>
 				<form id="messageForm">
 					<input size="35" id="message" placeholder="type your message..." autofocus autocomplete="off">
-					<input class="btn btn-primary" type="submit" value="Say It!">
-					<button type="button" class="btn btn-danger" onclick="window.location.href='home.html'">Exit</button>
+					<input class="sendbtn btn btn-primary btn-md" type="submit" value="Say It!">
 				</form>
 			</div>
 			<div id="userWrapper">
@@ -102,7 +132,43 @@ margin: 0 auto;
   integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
   crossorigin="anonymous"></script>
 <script src="/socket.io/socket.io.js"></script>
-<script>
+<script type="text/javascript">
+ScrollRate = 100;
+
+function scrollDiv_init() {
+	DivElmnt = document.getElementById('MyDivName');
+	ReachedMaxScroll = false;
+	
+	DivElmnt.scrollTop = 0;
+	PreviousScrollTop  = 0;
+	
+	ScrollInterval = setInterval('scrollDiv()', ScrollRate);
+}
+
+function scrollDiv() {
+	
+	if (!ReachedMaxScroll) {
+		DivElmnt.scrollTop = PreviousScrollTop;
+		PreviousScrollTop++;
+		
+		ReachedMaxScroll = DivElmnt.scrollTop >= (DivElmnt.scrollHeight - DivElmnt.offsetHeight);
+	}
+	else {
+		ReachedMaxScroll = (DivElmnt.scrollTop == 0)?false:true;
+		
+		DivElmnt.scrollTop = PreviousScrollTop;
+		PreviousScrollTop--;
+	}
+}
+
+function pauseDiv() {
+	clearInterval(ScrollInterval);
+}
+
+function resumeDiv() {
+	PreviousScrollTop = DivElmnt.scrollTop;
+	ScrollInterval    = setInterval('scrollDiv()', ScrollRate);
+}
 	$(function(){
 		var socket = io.connect();
 		var $messageForm = $("#messageForm");
